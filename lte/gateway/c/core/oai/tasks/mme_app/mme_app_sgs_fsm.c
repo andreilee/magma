@@ -121,7 +121,7 @@ void sgs_fsm_initialize(void) {
  **      Return:    RETURNok, RETURNerror                                  **
  **                                                                        **
  ***************************************************************************/
-int sgs_fsm_process(const sgs_fsm_t* sgs_evt) {
+status_code_e sgs_fsm_process(const sgs_fsm_t* sgs_evt) {
   int rc = RETURNerror;
   sgs_fsm_state_t state;
   sgs_primitive_t primitive;
@@ -165,7 +165,7 @@ int sgs_fsm_process(const sgs_fsm_t* sgs_evt) {
  **      Others:    _sgs_fsm_state                            **
  **                                                                        **
  ***************************************************************************/
-int sgs_fsm_set_status(
+status_code_e sgs_fsm_set_status(
     mme_ue_s1ap_id_t ue_id, void* ctx, sgs_fsm_state_t state) {
   OAILOG_FUNC_IN(LOG_MME_APP);
   sgs_context_t* sgs_ctx = (sgs_context_t*) ctx;

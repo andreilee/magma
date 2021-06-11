@@ -84,7 +84,7 @@ static int sgs_handle_paging_request_for_mt_sms_in_idle(
  **          Return:    RETURNok, RETURNerror                               **
  **                                                                         **
  ******************************************************************************/
-int sgs_handle_associated_paging_request(const sgs_fsm_t* evt) {
+status_code_e sgs_handle_associated_paging_request(const sgs_fsm_t* evt) {
   int rc                                           = RETURNerror;
   itti_sgsap_paging_request_t* sgsap_paging_req_pP = NULL;
 
@@ -121,7 +121,7 @@ int sgs_handle_associated_paging_request(const sgs_fsm_t* evt) {
  **          Return:    RETURNok, RETURNerror                               **
  **                                                                         **
  ******************************************************************************/
-static int sgs_handle_paging_request_for_mt_sms(const sgs_fsm_t* evt) {
+static status_code_e sgs_handle_paging_request_for_mt_sms(const sgs_fsm_t* evt) {
   int rc                                           = RETURNerror;
   ue_mm_context_t* ue_context_p                    = NULL;
   sgs_context_t* sgs_context                       = NULL;
@@ -187,7 +187,7 @@ static int sgs_handle_paging_request_for_mt_sms(const sgs_fsm_t* evt) {
  **          Return:    RETURNok, RETURNerror                                **
  **                                                                          **
  *******************************************************************************/
-static int sgs_handle_paging_request_for_mt_call(const sgs_fsm_t* evt) {
+static status_code_e sgs_handle_paging_request_for_mt_call(const sgs_fsm_t* evt) {
   int rc                                           = RETURNerror;
   ue_mm_context_t* ue_context_p                    = NULL;
   sgs_context_t* sgs_context                       = NULL;
@@ -273,7 +273,7 @@ static int sgs_handle_paging_request_for_mt_call(const sgs_fsm_t* evt) {
  **                                                                         **
  ******************************************************************************/
 
-static int sgs_handle_paging_request_for_mt_call_in_connected(
+static status_code_e sgs_handle_paging_request_for_mt_call_in_connected(
     ue_mm_context_t* ue_context_p,
     itti_sgsap_paging_request_t* const sgsap_paging_req_pP) {
   int rc            = RETURNerror;
@@ -340,7 +340,7 @@ static int sgs_handle_paging_request_for_mt_call_in_connected(
  **          Return:    RETURNok, RETURNerror                               **
  **                                                                         **
  ******************************************************************************/
-static int sgs_handle_paging_request_for_mt_sms_in_connected(
+static status_code_e sgs_handle_paging_request_for_mt_sms_in_connected(
     ue_mm_context_t* ue_context_p,
     itti_sgsap_paging_request_t* const sgsap_paging_req_pP) {
   int rc = RETURNerror;
@@ -391,7 +391,7 @@ static int sgs_handle_paging_request_for_mt_sms_in_connected(
  ** **
  ***********************************************************************************/
 
-static int sgs_handle_paging_request_for_mt_call_in_idle(
+static status_code_e sgs_handle_paging_request_for_mt_call_in_idle(
     ue_mm_context_t* ue_context_p,
     itti_sgsap_paging_request_t* const sgsap_paging_req_pP)
 
@@ -476,7 +476,7 @@ static int sgs_handle_paging_request_for_mt_call_in_idle(
  ** **
  ***********************************************************************************/
 
-static int sgs_handle_paging_request_for_mt_sms_in_idle(
+static status_code_e sgs_handle_paging_request_for_mt_sms_in_idle(
     ue_mm_context_t* ue_context_p,
     itti_sgsap_paging_request_t* const sgsap_paging_req_pP)
 
@@ -562,7 +562,7 @@ static int sgs_handle_paging_request_for_mt_sms_in_idle(
  ** **
  ***********************************************************************************/
 
-int mme_app_send_sgsap_service_request(
+status_code_e mme_app_send_sgsap_service_request(
     uint8_t service_indicator, struct ue_mm_context_s* ue_context_p) {
   int rc                                             = RETURNerror;
   MessageDef* message_p                              = NULL;
@@ -629,7 +629,7 @@ int mme_app_send_sgsap_service_request(
  **          Return:    RETURNok, RETURNerror                               **
  **
  ******************************************************************************/
-int mme_app_send_sgsap_paging_reject(
+status_code_e mme_app_send_sgsap_paging_reject(
     struct ue_mm_context_s* ue_context_p, imsi64_t imsi, uint8_t imsi_len,
     SgsCause_t sgs_cause) {
   int rc                                             = RETURNerror;
@@ -683,7 +683,7 @@ int mme_app_send_sgsap_paging_reject(
  **
  ***********************************************************************************/
 
-int sgs_handle_null_paging_request(const sgs_fsm_t* evt) {
+status_code_e sgs_handle_null_paging_request(const sgs_fsm_t* evt) {
   int rc                                           = RETURNerror;
   struct ue_mm_context_s* ue_context_p             = NULL;
   itti_sgsap_paging_request_t* sgsap_paging_req_pP = NULL;
@@ -735,7 +735,7 @@ int sgs_handle_null_paging_request(const sgs_fsm_t* evt) {
  **
  ***********************************************************************************/
 
-static int mme_app_send_sgsap_ue_unreachable(
+static status_code_e mme_app_send_sgsap_ue_unreachable(
     struct ue_mm_context_s* ue_context_p, SgsCause_t sgs_cause) {
   int rc                                               = RETURNerror;
   MessageDef* message_p                                = NULL;
@@ -787,7 +787,7 @@ static int mme_app_send_sgsap_ue_unreachable(
  **          Return:    RETURNok, RETURNerror **
  **
  ***********************************************************************************/
-static int sgsap_handle_paging_request_without_lai(
+static status_code_e sgsap_handle_paging_request_without_lai(
     ue_mm_context_t* ue_context_p,
     itti_sgsap_paging_request_t* const sgsap_paging_req_pP) {
   int rc                     = RETURNok;
@@ -864,7 +864,7 @@ static int sgsap_handle_paging_request_without_lai(
  **      Return:    RETURNok, RETURNerror                                  **
  **                                                                        **
  ***************************************************************************/
-int mme_app_handle_sgsap_paging_request(
+status_code_e mme_app_handle_sgsap_paging_request(
     mme_app_desc_t* mme_app_desc_p,
     itti_sgsap_paging_request_t* const sgsap_paging_req_pP) {
   struct ue_mm_context_s* ue_context_p = NULL;
